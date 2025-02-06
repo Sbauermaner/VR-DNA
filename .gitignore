@@ -1,0 +1,11 @@
+__pycache__/
+.vscode/
+*.log
+*.tmp
+.DS_Store
+.idea/
+*.unitypackage
+Library/
+Temp/
+obj/
+Build/
