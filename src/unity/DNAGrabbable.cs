@@ -35,7 +35,7 @@ public class DNAGrabbable : XRGrabInteractable
     IEnumerator AnalyzeStretch(float stretchFactor)
     {
         string json = $"{{\"stretch_values\": [{stretchFactor}]}}";
-        using (UnityWebRequest request = UnityWebRequest.Post("http://localhost:5000/analyze_stretch", json))
+        using (UnityWebRequest request = UnityWebRequest.Post("http://localhost:5000/analyze_dna", json))
         {
             byte[] body = Encoding.UTF8.GetBytes(json);
             request.uploadHandler = new UploadHandlerRaw(body);
