@@ -1,0 +1,8 @@
+numpy==1.23.5
+open3d==0.17.0
+torch==2.0.1
+flask==2.3.2
+biopython==1.81
+requests==2.31.0
+matplotlib==3.7.1
+pytest==7.4.0
