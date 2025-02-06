@@ -1,18 +1,31 @@
-import React from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-function DNA3DViewer({ stretchFactor }) {
-  return (
-    <Canvas>
-      <OrbitControls />
-      <ambientLight />
-      <mesh scale={[1, 1, stretchFactor]}>
-        <cylinderGeometry args={[0.1, 0.1, 5, 32]} />
-        <meshStandardMaterial color="blue" />
-      </mesh>
-    </Canvas>
-  );
+function DNA3DViewer() {
+    const mountRef = useRef(null);
+
+    useEffect(() => {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        mountRef.current.appendChild(renderer.domElement);
+
+        const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+        const dnaMesh = new THREE.Mesh(geometry, material);
+        scene.add(dnaMesh);
+
+        camera.position.z = 5;
+        const animate = () => {
+            requestAnimationFrame(animate);
+            dnaMesh.rotation.x += 0.01;
+            dnaMesh.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        };
+        animate();
+    }, []);
+
+    return <div ref={mountRef}></div>;
 }
 
 export default DNA3DViewer;
