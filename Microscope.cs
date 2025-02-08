@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Microscope : MonoBehaviour
-{
+public class Microscope : MonoBehaviour {
     public Camera microscopeCamera;
-    public float zoomFactor = 2.0f;
-    
-    public void AdjustFocus(float adjustment)
-    {
-        microscopeCamera.fieldOfView = Mathf.Clamp(microscopeCamera.fieldOfView - adjustment, 5, 50);
-        Debug.Log("Microscope focus adjusted: " + microscopeCamera.fieldOfView);
+
+    public void ZoomIn() {
+        microscopeCamera.fieldOfView = Mathf.Max(10, microscopeCamera.fieldOfView - 5);
+    }
+
+    public void ZoomOut() {
+        microscopeCamera.fieldOfView = Mathf.Min(60, microscopeCamera.fieldOfView + 5);
     }
 }
